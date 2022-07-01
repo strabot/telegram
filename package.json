@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/gabrielrufino/strabot-telegram/issues"
   },
-  "homepage": "https://github.com/gabrielrufino/strabot-telegram#readme"
+  "homepage": "https://github.com/gabrielrufino/strabot-telegram#readme",
+  "dependencies": {
+    "telegraf": "^4.8.5"
+  }
 }
