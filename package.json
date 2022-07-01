@@ -17,6 +17,7 @@
     "name": "Gabriel Rufino",
     "email": "contato@gabrielrufino.com"
   },
+  "funding": "https://github.com/sponsors/gabrielrufino",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gabrielrufino/strabot-telegram/issues"
