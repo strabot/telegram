@@ -10,7 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/gabrielrufino/strabot-telegram.git"
   },
-  "author": "",
+  "author": {
+    "name": "Gabriel Rufino",
+    "email": "contato@gabrielrufino.com"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/gabrielrufino/strabot-telegram/issues"
