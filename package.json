@@ -27,6 +27,7 @@
     "telegraf": "^4.8.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.18"
+    "nodemon": "^2.0.18",
+    "rimraf": "^3.0.2"
   }
 }
