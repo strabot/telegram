@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/gabrielrufino/strabot-telegram#readme",
   "dependencies": {
+    "dotenv-cli": "^5.1.0",
     "got": "^12.1.0",
     "telegraf": "^4.8.5"
   },
