@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "description": "",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "develop": "dotenv nodemon .",
     "reinstall": "rimraf node_modules && npm ci",
