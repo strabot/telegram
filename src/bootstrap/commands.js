@@ -18,7 +18,6 @@ export async function commands ({ bot, StrabotManager }) {
 
     bot.command(Command, context => {
       for (const message of messages) {
-        console.log(message)
         context.reply(message.attributes.Text)
       }
     })
