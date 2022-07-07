@@ -1,9 +1,7 @@
-import { Context, Telegraf } from 'telegraf'
-
 /**
  * Bootstrap commands
  * @param {Object} params
- * @param {Telegraf<Context>} params.bot
+ * @param {import('telegraf').Telegraf} params.bot
  * @param {import('got/dist/source/types.js').Got} params.StrabotManager
  */
 export async function commands ({ bot, StrabotManager }) {
