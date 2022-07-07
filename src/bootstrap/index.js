@@ -5,8 +5,9 @@ import { commands } from './commands.js'
 /**
  * @param {Object} params
  * @param {import('got/dist/source/types.js').Got} params.StrabotManager
+ * @param {import('pino').Logger} params.logger
  */
-export async function bootstrap ({ StrabotManager }) {
+export async function bootstrap ({ StrabotManager, logger }) {
   const { body: { data: { attributes: { Token } } } } = await StrabotManager.get('telegram-config')
   const bot = new Telegraf(Token)
 
@@ -15,5 +16,6 @@ export async function bootstrap ({ StrabotManager }) {
     StrabotManager
   })
 
-  bot.launch()
+  await bot.launch()
+  logger.info('Bot running')
 }
