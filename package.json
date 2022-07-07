@@ -7,6 +7,7 @@
   "type": "module",
   "scripts": {
     "develop": "dotenv nodemon .",
+    "docs": "jsdoc src",
     "lint": "standard",
     "lint:fix": "npm run lint -- --fix",
     "reinstall": "rimraf node_modules && npm ci",
