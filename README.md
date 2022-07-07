@@ -1,1 +1,1 @@
-# strabot-telegram
+# Strabot - Telegram

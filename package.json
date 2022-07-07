@@ -1,0 +1,42 @@
+{
+  "name": "@strabot/telegram",
+  "private": true,
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "develop": "dotenv nodemon .",
+    "lint": "standard",
+    "lint:fix": "npm run lint -- --fix",
+    "reinstall": "rimraf node_modules && npm ci",
+    "start": "dotenv node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielrufino/strabot-telegram.git"
+  },
+  "author": {
+    "name": "Gabriel Rufino",
+    "email": "contato@gabrielrufino.com"
+  },
+  "funding": "https://github.com/sponsors/gabrielrufino",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabrielrufino/strabot-telegram/issues"
+  },
+  "homepage": "https://github.com/gabrielrufino/strabot-telegram#readme",
+  "dependencies": {
+    "dotenv-cli": "^5.1.0",
+    "got": "^12.1.0",
+    "pino": "^8.1.0",
+    "telegraf": "^4.8.5"
+  },
+  "devDependencies": {
+    "jest": "^28.1.2",
+    "nodemon": "^2.0.19",
+    "rimraf": "^3.0.2",
+    "standard": "^17.0.0"
+  }
+}
