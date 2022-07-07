@@ -8,14 +8,18 @@ import { commands } from './commands.js'
  * @param {import('pino').Logger} params.logger
  */
 export async function bootstrap ({ StrabotManager, logger }) {
-  const { body: { data: { attributes: { Token } } } } = await StrabotManager.get('telegram-config')
-  const bot = new Telegraf(Token)
-
-  commands({
-    bot,
-    StrabotManager
-  })
-
-  await bot.launch()
-  logger.info('Bot running')
+  try {
+    const { body: { data: { attributes: { Token } } } } = await StrabotManager.get('telegram-config')
+    const bot = new Telegraf(Token)
+  
+    commands({
+      bot,
+      StrabotManager
+    })
+  
+    await bot.launch()
+    logger.info('Bot running')
+  } catch (error) {
+    logger.error(error)
+  }
 }
