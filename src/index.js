@@ -1,3 +1,6 @@
-import { bootstrap } from './bootstrap.js'
+import { StrabotManager } from './services/StrabotManager.js'
+import { bootstrap } from './bootstrap/index.js'
 
-bootstrap()
+bootstrap({
+  StrabotManager
+})
