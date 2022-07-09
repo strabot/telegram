@@ -14,10 +14,31 @@ export async function commands ({ bot, StrabotManager }) {
   for (const command of commands) {
     const { Command, Messages: { data: messages } } = command.attributes
 
-    bot.command(Command, context => {
-      for (const message of messages) {
-        context.reply(message.attributes.Text)
-      }
-    })
+    if (Command === 'start') {
+      bot.start(
+        (context, next) => {
+          for (const message of messages) {
+            context.replyWithMarkdown(message.attributes.Text)
+          }
+          next()
+        },
+        async (context) => {
+          await StrabotManager.post('chats', {
+            json: {
+              data: {
+                Chat_ID: String(context.chat.id),
+                Platform: 'Telegram'
+              }
+            }
+          })
+        }
+      )
+    } else {
+      bot.command(Command, context => {
+        for (const message of messages) {
+          context.replyWithMarkdown(message.attributes.Text)
+        }
+      })
+    }
   }
 }
