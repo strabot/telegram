@@ -18,7 +18,7 @@ export async function commands ({ bot, StrabotManager }) {
       bot.start(
         (context, next) => {
           for (const message of messages) {
-            context.replyWithMarkdown(message.attributes.Text)
+            context.replyWithMarkdown(message.attributes.Text).catch()
           }
           next()
         },
@@ -30,13 +30,13 @@ export async function commands ({ bot, StrabotManager }) {
                 Platform: 'Telegram'
               }
             }
-          })
+          }).catch(() => {})
         }
       )
     } else {
       bot.command(Command, context => {
         for (const message of messages) {
-          context.replyWithMarkdown(message.attributes.Text)
+          context.replyWithMarkdown(message.attributes.Text).catch()
         }
       })
     }
