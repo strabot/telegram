@@ -26,8 +26,10 @@ export async function commands ({ bot, StrabotManager }) {
           await StrabotManager.post('chats', {
             json: {
               data: {
+                Name: context.chat.first_name,
+                Platform: 'Telegram',
+                Type: 'Private',
                 Chat_ID: String(context.chat.id),
-                Platform: 'Telegram'
               }
             }
           }).catch(() => {})
