@@ -9,7 +9,12 @@ import { schedules } from './schedules.js'
  * @param {import('got').Got} params.StrabotManager
  * @param {import('pino').Logger} params.logger
  */
-export async function bootstrap ({ Scheduler, StrabotManager, logger }) {
+export async function bootstrap ({
+  Scheduler,
+  StrabotManager,
+  dayjs,
+  logger
+}) {
   try {
     const { body: { data: { attributes: { Token } } } } = await StrabotManager.get('telegram-config')
     const bot = new Telegraf(Token)
@@ -22,7 +27,8 @@ export async function bootstrap ({ Scheduler, StrabotManager, logger }) {
       schedules({
         Scheduler,
         StrabotManager,
-        bot
+        bot,
+        dayjs
       })
     ])
 

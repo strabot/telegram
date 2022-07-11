@@ -1,10 +1,13 @@
 /**
  * Bootstrap commands
  * @param {Object} params
- * @param {import('telegraf').Telegraf} params.bot
  * @param {import('got/dist/source/types.js').Got} params.StrabotManager
+ * @param {import('telegraf').Telegraf} params.bot
  */
-export async function commands ({ bot, StrabotManager }) {
+export async function commands ({
+  StrabotManager,
+  bot
+}) {
   const { body: { data: commands } } = await StrabotManager.get('commands', {
     searchParams: {
       populate: 'Messages'
@@ -29,7 +32,7 @@ export async function commands ({ bot, StrabotManager }) {
                 Name: context.chat.first_name,
                 Platform: 'Telegram',
                 Type: 'Private',
-                Chat_ID: String(context.chat.id),
+                Chat_ID: String(context.chat.id)
               }
             }
           }).catch(() => {})
