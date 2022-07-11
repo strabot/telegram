@@ -38,6 +38,7 @@
     "telegraf": "^4.8.5"
   },
   "devDependencies": {
+    "husky": "^8.0.1",
     "jest": "^28.1.2",
     "nodemon": "^2.0.19",
     "rimraf": "^3.0.2",
