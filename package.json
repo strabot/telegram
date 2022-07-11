@@ -12,7 +12,7 @@
     "lint:fix": "npm run lint -- --fix",
     "reinstall": "rimraf node_modules && npm ci",
     "start": "dotenv node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
