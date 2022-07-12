@@ -10,7 +10,8 @@ export async function commands ({
 }) {
   const { body: { data: commands } } = await StrabotManager.get('commands', {
     searchParams: {
-      populate: 'Messages'
+      populate: 'Messages',
+      'filters[Telegram][$eq]': true
     }
   })
 
