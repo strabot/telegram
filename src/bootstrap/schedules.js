@@ -15,6 +15,7 @@ export async function schedules ({
   const { body: { data: schedules } } = await StrabotManager.get('schedules', {
     searchParams: {
       populate: 'Messages',
+      'filters[Telegram][$eq]': true,
       'filters[$or][0][Date][$gt]': dayjs().toISOString(),
       'filters[$or][1][Date][$null]': true
     }
