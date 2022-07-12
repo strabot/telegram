@@ -16,7 +16,13 @@ export async function bootstrap ({
   logger
 }) {
   try {
-    const { body: { data: { attributes: { Token } } } } = await StrabotManager.get('telegram-config')
+    const { body: { data: { attributes: { Active, Token } } } } = await StrabotManager.get('telegram-config')
+
+    if (!Active) {
+      logger.error('Telegram platform is not active. Setup in your manager.')
+      return process.exit(0)
+    }
+
     const bot = new Telegraf(Token)
 
     await Promise.all([
