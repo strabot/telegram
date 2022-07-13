@@ -47,7 +47,7 @@ export async function schedules ({
 
           for (const quiz of quizzes) {
             const { Question, Answers } = quiz.attributes
-    
+
             const correctAnswerIndex = Answers.findIndex(({ Correct }) => Correct)
             await bot.telegram.sendQuiz(
               chatId,
@@ -58,10 +58,10 @@ export async function schedules ({
               }
             )
           }
-    
+
           for (const survey of surveys) {
             const { Question, Options } = survey.attributes
-    
+
             await bot.telegram.sendPoll(
               chatId,
               Question,
