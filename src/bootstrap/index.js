@@ -1,6 +1,7 @@
 import { Telegraf } from 'telegraf'
 
 import { commands } from './commands.js'
+import { greetings } from './greetings.js'
 import { schedules } from './schedules.js'
 
 /**
@@ -27,6 +28,10 @@ export async function bootstrap ({
 
     await Promise.all([
       commands({
+        StrabotManager,
+        bot
+      }),
+      greetings({
         StrabotManager,
         bot
       }),
