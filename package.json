@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/gabrielrufino/strabot-telegram#readme",
   "dependencies": {
-    "cron": "^2.0.0",
+    "cron": "^2.1.0",
     "dayjs": "^1.11.3",
     "dotenv-cli": "^5.1.0",
     "got": "^12.1.0",
