@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import natural from 'natural'
 import pino from 'pino'
 
 import { Scheduler } from './services/Scheduler.js'
@@ -11,5 +12,6 @@ bootstrap({
   Scheduler,
   StrabotManager,
   dayjs,
-  logger
+  logger,
+  natural
 })

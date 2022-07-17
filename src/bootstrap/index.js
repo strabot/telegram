@@ -2,6 +2,7 @@ import { Telegraf } from 'telegraf'
 
 import { commands } from './commands.js'
 import { greetings } from './greetings.js'
+import { listenings } from './listenings.js'
 import { schedules } from './schedules.js'
 
 /**
@@ -9,12 +10,14 @@ import { schedules } from './schedules.js'
  * @param {import('../services/Scheduler').Scheduler} params.Scheduler
  * @param {import('got').Got} params.StrabotManager
  * @param {import('pino').Logger} params.logger
+ * @param {import('natural')} params.natural
  */
 export async function bootstrap ({
   Scheduler,
   StrabotManager,
   dayjs,
-  logger
+  logger,
+  natural
 }) {
   try {
     const { body: { data: { attributes: { Active, Token } } } } = await StrabotManager.get('telegram-config')
@@ -34,6 +37,11 @@ export async function bootstrap ({
       greetings({
         StrabotManager,
         bot
+      }),
+      listenings({
+        StrabotManager,
+        bot,
+        natural
       }),
       schedules({
         Scheduler,
