@@ -1,5 +1,4 @@
-# Strabot - Telegram
-
 <p align="center">
-  <img width="600px" src="https://www.strabot.dev/_media/main-logo-with-name.png">
+  <img width="500px" src="https://www.strabot.dev/_media/main-logo-with-name.png">
 </p>
+<h1 align="center">Telegram</h1>
