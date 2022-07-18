@@ -10,7 +10,7 @@
     "docs": "jsdoc src",
     "lint": "standard",
     "lint:fix": "npm run lint -- --fix",
-    "reinstall": "rimraf node_modules && npm ci",
+    "reinstall": "npx rimraf node_modules && npm ci",
     "start": "dotenv node .",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
