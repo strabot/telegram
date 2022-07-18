@@ -1,5 +1,6 @@
 /**
  * @param {Object} params
+ * @param {import('got').Got} params.StrabotManager
  * @param {import('telegraf').Telegraf} params.bot
  */
 export async function greetings ({
