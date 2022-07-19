@@ -35,7 +35,7 @@
     "got": "^12.1.0",
     "jsdoc": "^3.6.10",
     "natural": "^5.2.3",
-    "pino": "^8.1.0",
+    "pino": "^8.2.0",
     "telegraf": "^4.8.5"
   },
   "devDependencies": {
