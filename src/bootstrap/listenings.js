@@ -11,7 +11,7 @@ export async function listenings ({
 }) {
   const { body: { data: listenings } } = await StrabotManager.get('listenings', {
     searchParams: {
-      populate: 'Messages,Quizzes,Surveys'
+      populate: 'Messages,Quizzes.Answers,Surveys.Options'
     }
   })
 
@@ -34,9 +34,31 @@ export async function listenings ({
             reply_to_message_id: messageId
           })
         }
-      }
 
-      break
+        for (const quiz of quizzes) {
+          const { Question, Answers } = quiz.attributes
+
+          const correctAnswerIndex = Answers.findIndex(({ Correct }) => Correct)
+          await context.replyWithQuiz(
+            Question,
+            Answers.map(({ Value }) => Value),
+            {
+              correct_option_id: correctAnswerIndex
+            }
+          )
+        }
+
+        for (const survey of surveys) {
+          const { Question, Options } = survey.attributes
+
+          await context.replyWithPoll(
+            Question,
+            Options.map(({ Value }) => Value)
+          )
+        }
+
+        break
+      }
     }
   })
 }

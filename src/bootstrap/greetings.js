@@ -2,23 +2,20 @@
  * @param {Object} params
  * @param {import('got').Got} params.StrabotManager
  * @param {import('telegraf').Telegraf} params.bot
+ * @param {import('@strabot/types').TelegramConfig} params.config
  */
 export async function greetings ({
   StrabotManager,
-  bot
+  bot,
+  config
 }) {
-  const { body: { data: config } } = await StrabotManager.get('telegram-config', {
+  const { body: { data: greetings } } = await StrabotManager.get('greeting', {
     searchParams: {
-      populate: 'Greetings.Messages,Greetings.Quizzes,Greetings.Surveys'
+      populate: 'Messages,Quizzes.Answers,Surveys.Options'
     }
   })
 
-  const {
-    Greetings: greetings,
-    Group_chats: groupChats,
-    Private_chats: privateChats,
-    Username: username
-  } = config.attributes
+  const { Username: username, Group_chats: groupChats, Private_chats: privateChats } = config.attributes
 
   if (privateChats) {
     bot.start(async (context) => {
@@ -27,7 +24,7 @@ export async function greetings ({
           Messages: { data: messages },
           Quizzes: { data: quizzes },
           Surveys: { data: surveys }
-        } = greetings
+        } = greetings.attributes
 
         for (const message of messages) {
           await context.replyWithMarkdown(message.attributes.Text).catch()

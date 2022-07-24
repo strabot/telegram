@@ -12,9 +12,9 @@ describe('Greetings bootstrap', () => {
   /**
    * @type {import('telegraf').Telegraf}
    */
-   let bot
+  let bot
 
-   beforeEach(() => {
+  beforeEach(() => {
     StrabotManager = {
       get: jest
         .fn()
@@ -31,13 +31,13 @@ describe('Greetings bootstrap', () => {
     bot = {
       start: jest.fn()
     }
-   })
+  })
 
-   it('Should be a function', () => {
+  it('Should be a function', () => {
     expect(greetings).toBeInstanceOf(Function)
-   })
+  })
 
-   it('Should get the telegram config from the strabot manager', async () => {
+  it('Should get the telegram config from the strabot manager', async () => {
     await greetings({
       StrabotManager,
       bot
@@ -51,5 +51,5 @@ describe('Greetings bootstrap', () => {
         }
       }
     )
-   })
+  })
 })
