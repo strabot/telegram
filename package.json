@@ -30,12 +30,12 @@
   "homepage": "https://github.com/gabrielrufino/strabot-telegram#readme",
   "dependencies": {
     "cron": "^2.1.0",
-    "dayjs": "^1.11.3",
+    "dayjs": "^1.11.4",
     "dotenv-cli": "^5.1.0",
-    "got": "^12.1.0",
-    "jsdoc": "^3.6.10",
+    "got": "^12.2.0",
+    "jsdoc": "^3.6.11",
     "natural": "^5.2.3",
-    "pino": "^8.2.0",
+    "pino": "^8.3.0",
     "telegraf": "^4.8.5"
   },
   "devDependencies": {
