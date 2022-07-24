@@ -20,7 +20,8 @@ export async function bootstrap ({
   natural
 }) {
   try {
-    const { body: { data: { attributes: { Active, Token } } } } = await StrabotManager.get('telegram-config')
+    const { body: { data: config } } = await StrabotManager.get('telegram-config')
+    const { Active, Token } = config.attributes
 
     if (!Active) {
       logger.error('Telegram platform is not active. Setup in your manager.')
@@ -36,7 +37,8 @@ export async function bootstrap ({
       }),
       greetings({
         StrabotManager,
-        bot
+        bot,
+        config
       }),
       listenings({
         StrabotManager,
