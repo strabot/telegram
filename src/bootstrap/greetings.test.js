@@ -14,6 +14,11 @@ describe('Greetings bootstrap', () => {
    */
   let bot
 
+  /**
+   * @type {import('@strabot/types').TelegramConfig}
+   */
+  let config
+
   beforeEach(() => {
     StrabotManager = {
       get: jest
@@ -31,6 +36,10 @@ describe('Greetings bootstrap', () => {
     bot = {
       start: jest.fn()
     }
+
+    config = {
+      attributes: {}
+    }
   })
 
   it('Should be a function', () => {
@@ -40,14 +49,15 @@ describe('Greetings bootstrap', () => {
   it('Should get the telegram config from the strabot manager', async () => {
     await greetings({
       StrabotManager,
-      bot
+      bot,
+      config
     })
 
     expect(StrabotManager.get).toBeCalledWith(
       'telegram-config',
       {
         searchParams: {
-          populate: 'Greetings.Messages,Greetings.Quizzes,Greetings.Surveys'
+          populate: 'Messages,Quizzes.Answers,Surveys.Options'
         }
       }
     )
