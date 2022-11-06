@@ -54,7 +54,7 @@ describe('Greetings bootstrap', () => {
     })
 
     expect(StrabotManager.get).toBeCalledWith(
-      'telegram-config',
+      'greeting',
       {
         searchParams: {
           populate: 'Messages,Quizzes.Answers,Surveys.Options'
