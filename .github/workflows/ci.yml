@@ -8,7 +8,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        node-version: [12, 14, 16]
+        node-version: [12, 14, 16, 18]
         os: [ubuntu-latest] # Add other systems
 
     runs-on: ${{ matrix.os }}
@@ -26,10 +26,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js 16
+    - name: Use Node.js 18
       uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 18
     - run: npm ci
     - run: npm run lint
 
