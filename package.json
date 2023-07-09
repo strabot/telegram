@@ -1,7 +1,7 @@
 {
   "name": "@strabot/telegram",
   "private": true,
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A Strabot Telegram bot",
   "main": "src/index.js",
   "type": "module",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gabrielrufino/strabot-telegram.git"
+    "url": "git+https://github.com/strabot/strabot-telegram.git"
   },
   "author": {
     "name": "Gabriel Rufino",
@@ -25,12 +25,12 @@
   "funding": "https://github.com/sponsors/gabrielrufino",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gabrielrufino/strabot-telegram/issues"
+    "url": "https://github.com/strabot/strabot-telegram/issues"
   },
-  "homepage": "https://github.com/gabrielrufino/strabot-telegram#readme",
+  "homepage": "https://github.com/strabot/strabot-telegram#readme",
   "dependencies": {
     "cron": "^2.3.1",
-    "dayjs": "^1.11.8",
+    "dayjs": "^1.11.9",
     "dotenv": "^16.3.1",
     "got": "^12.6.1",
     "natural": "^5.2.4",
