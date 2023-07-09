@@ -15,14 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build image
-        run: docker image build -t gabrielrufino/strabot-telegram:latest -t gabrielrufino/strabot-telegram:$(npm pkg get version | sed 's/"//g') .
+        run: docker image build -t strabot/strabot-telegram:latest -t strabot/strabot-telegram:$(npm pkg get version | sed 's/"//g') .
       - name: Log in docker hub
-        run: docker login -u gabrielrufino -p ${{ secrets.DOCKER_HUB_TOKEN }}
+        run: docker login -u strabot -p ${{ secrets.DOCKER_HUB_TOKEN }}
       - name: Publish image
-        run: docker image push -a gabrielrufino/strabot-telegram
+        run: docker image push -a strabot/strabot-telegram
       - name: Set docker hub description
         uses: peter-evans/dockerhub-description@v3
         with:
-          username: gabrielrufino
+          username: strabot
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          repository: gabrielrufino/strabot-telegram
+          repository: strabot/strabot-telegram
