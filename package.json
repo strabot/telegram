@@ -29,12 +29,12 @@
   },
   "homepage": "https://github.com/strabot/strabot-telegram#readme",
   "dependencies": {
-    "cron": "^2.3.1",
+    "cron": "^2.4.0",
     "dayjs": "^1.11.9",
     "dotenv": "^16.3.1",
     "got": "^12.6.1",
     "natural": "^5.2.4",
-    "pino": "^8.14.1",
+    "pino": "^8.15.0",
     "telegraf": "^4.12.2"
   },
   "devDependencies": {
