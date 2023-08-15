@@ -16,20 +16,16 @@ jobs:
     steps:
       - run: exit 0
   publish:
-    name: Publish on Docker Hub
+    name: Publish Image
     needs:
       - ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build image
-        run: docker image build -t strabot/strabot-telegram:latest -t strabot/strabot-telegram:$(npm pkg get version | sed 's/"//g') .
-      - name: Log in docker hub
-        run: docker login -u strabot -p ${{ secrets.DOCKER_HUB_TOKEN }}
-      - name: Publish image
-        run: docker image push -a strabot/strabot-telegram
-      - name: Set docker hub description
-        uses: peter-evans/dockerhub-description@v3
+      - run: docker image build -t strabot/strabot-telegram:latest -t strabot/strabot-telegram:$(npm pkg get version | sed 's/"//g') .
+      - run: docker login -u strabot -p ${{ secrets.DOCKER_HUB_TOKEN }}
+      - run: docker image push -a strabot/strabot-telegram
+      - uses: peter-evans/dockerhub-description@v3
         with:
           username: strabot
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
