@@ -5,25 +5,19 @@ on:
 
 jobs:
   tests:
-    strategy:
-      matrix:
-        node-version: [12, 14, 16, 18]
-        os: [ubuntu-latest] # Add other systems
-
-    runs-on: ${{ matrix.os }}
-
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
       - run: npm ci
       - run: npm test
   lint:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: 18
