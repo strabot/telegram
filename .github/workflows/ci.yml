@@ -1,28 +1,17 @@
 name: CI
 
 on:
+  - pull_request
   - push
+  - workflow_dispatch
 
 jobs:
-  tests:
+  node-ci:
+    name: Node CI
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm ci
-      - run: npm test
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm ci
-      - run: npm run lint
+      - uses: gabrielrufino/node-ci@v1
 
 concurrency:
   group: ${{ github.ref }}
