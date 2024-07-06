@@ -31,11 +31,11 @@
   "dependencies": {
     "cron": "^2.4.4",
     "dayjs": "^1.11.10",
-    "dotenv": "^16.4.1",
+    "dotenv": "^16.4.5",
     "got": "^12.6.1",
     "natural": "^5.2.4",
-    "pino": "^8.17.2",
-    "telegraf": "^4.15.3"
+    "pino": "^8.19.0",
+    "telegraf": "^4.16.3"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
