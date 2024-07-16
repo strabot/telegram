@@ -1,7 +1,7 @@
 {
   "name": "@strabot/telegram",
   "private": true,
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "A Strabot Telegram bot",
   "main": "src/index.js",
   "type": "module",
