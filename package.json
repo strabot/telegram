@@ -30,7 +30,7 @@
   "homepage": "https://github.com/strabot/strabot-telegram#readme",
   "dependencies": {
     "cron": "^2.4.4",
-    "dayjs": "^1.11.11",
+    "dayjs": "^1.11.12",
     "dotenv": "^16.4.5",
     "got": "^12.6.1",
     "natural": "^5.2.4",
