@@ -9,18 +9,11 @@ on:
       - main
 
 jobs:
-  ci:
-    name: CI
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    steps:
-      - run: exit 0
   publish:
     name: Publish Image
-    needs:
-      - ci
     runs-on: ubuntu-latest
     steps:
+      - uses: gabrielrufino/check-ci@main
       - uses: actions/checkout@v4
       - run: docker image build -t strabot/strabot-telegram:latest -t strabot/strabot-telegram:$(npm pkg get version | sed 's/"//g') .
       - run: docker login -u strabot -p ${{ secrets.DOCKER_HUB_TOKEN }}
