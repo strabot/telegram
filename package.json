@@ -10,7 +10,6 @@
     "docs": "jsdoc src",
     "lint": "standard",
     "lint:fix": "npm run lint -- --fix",
-    "reinstall": "npx rimraf node_modules && npm ci",
     "start": "node -r dotenv/config .",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
@@ -45,7 +44,6 @@
     "jsdoc": "^4.0.3",
     "nodemon": "^2.0.22",
     "pino-pretty": "^11.2.2",
-    "rimraf": "^3.0.2",
     "standard": "^17.1.0"
   }
 }
