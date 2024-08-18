@@ -1,4 +1,4 @@
-FROM node:18.13.0-alpine
+FROM node:20-alpine
 
 ENV STRABOT_MANAGER_URL=http://manager:1337/api
 ENV STRABOT_MANAGER_TOKEN=
