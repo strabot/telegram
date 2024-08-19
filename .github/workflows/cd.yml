@@ -15,11 +15,11 @@ jobs:
     steps:
       - uses: gabrielrufino/check-ci@main
       - uses: actions/checkout@v4
-      - run: docker image build -t strabot/strabot-telegram:latest -t strabot/strabot-telegram:$(npm pkg get version | sed 's/"//g') .
+      - run: docker image build -t strabot/telegram:latest -t strabot/telegram:$(npm pkg get version | sed 's/"//g') .
       - run: docker login -u strabot -p ${{ secrets.DOCKER_HUB_TOKEN }}
-      - run: docker image push -a strabot/strabot-telegram
+      - run: docker image push -a strabot/telegram
       - uses: peter-evans/dockerhub-description@v3
         with:
           username: strabot
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          repository: strabot/strabot-telegram
+          repository: strabot/telegram
