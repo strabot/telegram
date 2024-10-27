@@ -1,22 +1,21 @@
 {
   "name": "@strabot/telegram",
   "private": true,
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "A Strabot Telegram bot",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "develop": "nodemon --exec 'npm start'",
+    "develop": "nodemon --exec 'npm start | pino-pretty'",
     "docs": "jsdoc src",
     "lint": "standard",
     "lint:fix": "npm run lint -- --fix",
-    "reinstall": "npx rimraf node_modules && npm ci",
     "start": "node -r dotenv/config .",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/strabot/strabot-telegram.git"
+    "url": "git+https://github.com/strabot/telegram.git"
   },
   "author": {
     "name": "Gabriel Rufino",
@@ -25,16 +24,16 @@
   "funding": "https://github.com/sponsors/gabrielrufino",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/strabot/strabot-telegram/issues"
+    "url": "https://github.com/strabot/telegram/issues"
   },
-  "homepage": "https://github.com/strabot/strabot-telegram#readme",
+  "homepage": "https://github.com/strabot/telegram#readme",
   "dependencies": {
     "cron": "^2.4.4",
-    "dayjs": "^1.11.11",
+    "dayjs": "^1.11.12",
     "dotenv": "^16.4.5",
     "got": "^12.6.1",
     "natural": "^5.2.4",
-    "pino": "^8.21.0",
+    "pino": "^9.3.2",
     "telegraf": "^4.16.3"
   },
   "devDependencies": {
@@ -44,7 +43,7 @@
     "jest": "^28.1.3",
     "jsdoc": "^4.0.3",
     "nodemon": "^2.0.22",
-    "rimraf": "^3.0.2",
+    "pino-pretty": "^11.2.2",
     "standard": "^17.1.0"
   }
 }

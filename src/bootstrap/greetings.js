@@ -27,7 +27,7 @@ export async function greetings ({
         } = greetings.attributes
 
         for (const message of messages) {
-          await context.replyWithMarkdown(message.attributes.Text).catch()
+          await context.replyWithMarkdownV2(message.attributes.Text).catch()
         }
 
         for (const quiz of quizzes) {

@@ -11,7 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: gabrielrufino/node-ci@v2
+      - uses: gabrielrufino/node-ci@v3
+  dockerfile-ci:
+    name: Dockerfile CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gabrielrufino/dockerfile-ci@v2
 
 concurrency:
   group: ${{ github.ref }}
