@@ -9,17 +9,19 @@ on:
       - main
 
 jobs:
-  publish:
-    name: Publish Image
+  dockerfile-cd:
+    name: Dockerfile CD
     runs-on: ubuntu-latest
     steps:
       - uses: gabrielrufino/check-ci@main
       - uses: actions/checkout@v4
-      - run: docker image build -t strabot/telegram:latest -t strabot/telegram:$(npm pkg get version | sed 's/"//g') .
-      - run: docker login -u strabot -p ${{ secrets.DOCKER_HUB_TOKEN }}
-      - run: docker image push -a strabot/telegram
-      - uses: peter-evans/dockerhub-description@v3
+      - run: |
+          IMAGE_VERSION=$(npm pkg get version | sed 's/"//g')
+          echo $IMAGE_VERSION
+          echo "IMAGE_VERSION=$IMAGE_VERSION" >> $GITHUB_ENV
+      - uses: gabrielrufino/dockerfile-cd@main
         with:
-          username: strabot
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          repository: strabot/telegram
+          image-name: strabot/telegram
+          image-version: ${{ env.IMAGE_VERSION }}
+          registry-username: strabot
+          registry-token: ${{ secrets.DOCKER_HUB_TOKEN }}
