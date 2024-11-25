@@ -13,13 +13,13 @@ jobs:
     name: Dockerfile CD
     runs-on: ubuntu-latest
     steps:
-      - uses: gabrielrufino/check-ci@main
+      - uses: actalog/check-ci@main
       - uses: actions/checkout@v4
       - run: |
           IMAGE_VERSION=$(npm pkg get version | sed 's/"//g')
           echo $IMAGE_VERSION
           echo "IMAGE_VERSION=$IMAGE_VERSION" >> $GITHUB_ENV
-      - uses: gabrielrufino/dockerfile-cd@main
+      - uses: actalog/dockerfile-cd@main
         with:
           image-name: strabot/telegram
           image-version: ${{ env.IMAGE_VERSION }}
