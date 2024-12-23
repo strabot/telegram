@@ -1,15 +1,14 @@
-/**
- * @param {Object} params
- * @param {import('telegraf').Telegraf} params.bot
- * @param {import('got').Got} params.StrabotManager
- * @param {import('natural')} params.natural
- */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import natural from 'natural'
+
 export async function listenings ({
   StrabotManager,
-  bot,
-  natural
+  bot
+}: {
+  StrabotManager: import('got').Got
+  bot: import('telegraf').Telegraf
 }) {
-  const { body: { data: listenings } } = await StrabotManager.get('listenings', {
+  const { body: { data: listenings } } = await StrabotManager.get<any>('listenings', {
     searchParams: {
       populate: 'Messages,Quizzes.Answers,Surveys.Options'
     }
@@ -31,17 +30,19 @@ export async function listenings ({
           const { Text } = message.attributes
 
           await context.replyWithMarkdown(Text, {
-            reply_to_message_id: messageId
+            reply_parameters: {
+              message_id: messageId
+            }
           })
         }
 
         for (const quiz of quizzes) {
           const { Question, Answers } = quiz.attributes
 
-          const correctAnswerIndex = Answers.findIndex(({ Correct }) => Correct)
+          const correctAnswerIndex = Answers.findIndex(({ Correct }: any) => Correct)
           await context.replyWithQuiz(
             Question,
-            Answers.map(({ Value }) => Value),
+            Answers.map(({ Value }: any) => Value),
             {
               correct_option_id: correctAnswerIndex
             }
@@ -53,7 +54,7 @@ export async function listenings ({
 
           await context.replyWithPoll(
             Question,
-            Options.map(({ Value }) => Value)
+            Options.map(({ Value }: any) => Value)
           )
         }
 
