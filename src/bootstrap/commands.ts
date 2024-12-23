@@ -1,14 +1,15 @@
-/**
- * Bootstrap commands
- * @param {Object} params
- * @param {import('got/dist/source/types.js').Got} params.StrabotManager
- * @param {import('telegraf').Telegraf} params.bot
- */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Got } from 'got'
+import { Telegraf } from 'telegraf'
+
 export async function commands ({
   StrabotManager,
   bot
+}: {
+  StrabotManager: Got,
+  bot: Telegraf
 }) {
-  const { body: { data: commands } } = await StrabotManager.get('commands', {
+  const { body: { data: commands } } = await StrabotManager.get<any>('commands', {
     searchParams: {
       populate: 'Messages,Quizzes.Answers,Surveys.Options',
       'filters[Telegram][$eq]': true
@@ -31,10 +32,10 @@ export async function commands ({
       for (const quiz of quizzes) {
         const { Question, Answers } = quiz.attributes
 
-        const correctAnswerIndex = Answers.findIndex(({ Correct }) => Correct)
+        const correctAnswerIndex = Answers.findIndex(({ Correct }: any) => Correct)
         await context.replyWithQuiz(
           Question,
-          Answers.map(({ Value }) => Value),
+          Answers.map(({ Value }: any) => Value),
           {
             correct_option_id: correctAnswerIndex
           }
@@ -46,7 +47,7 @@ export async function commands ({
 
         await context.replyWithPoll(
           Question,
-          Options.map(({ Value }) => Value)
+          Options.map(({ Value }: any) => Value)
         )
       }
     })

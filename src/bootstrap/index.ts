@@ -1,26 +1,30 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Telegraf } from 'telegraf'
 
 import { commands } from './commands.js'
 import { greetings } from './greetings.js'
 import { listenings } from './listenings.js'
 import { schedules } from './schedules.js'
+import { Logger } from 'pino'
+import { Got } from 'got'
 
 /**
  * @param {Object} params
  * @param {import('../services/Scheduler').Scheduler} params.Scheduler
  * @param {import('got').Got} params.StrabotManager
  * @param {import('pino').Logger} params.logger
- * @param {import('natural')} params.natural
  */
 export async function bootstrap ({
   Scheduler,
   StrabotManager,
-  dayjs,
   logger,
-  natural
+}: {
+  Scheduler: any
+  StrabotManager: Got
+  logger: Logger
 }) {
   try {
-    const { body: { data: config } } = await StrabotManager.get('telegram-config')
+    const { body: { data: config } } = await StrabotManager.get<any>('telegram-config')
     const { Active, Token } = config.attributes
 
     if (!Active) {
@@ -43,13 +47,11 @@ export async function bootstrap ({
       listenings({
         StrabotManager,
         bot,
-        natural
       }),
       schedules({
         Scheduler,
         StrabotManager,
         bot,
-        dayjs
       })
     ])
 

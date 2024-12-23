@@ -1,15 +1,17 @@
-/**
- * @param {Object} params
- * @param {import('got').Got} params.StrabotManager
- * @param {import('telegraf').Telegraf} params.bot
- * @param {import('@strabot/types').TelegramConfig} params.config
- */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Got } from 'got'
+import { Telegraf } from 'telegraf'
+
 export async function greetings ({
   StrabotManager,
   bot,
   config
+}: {
+  StrabotManager: Got
+  bot: Telegraf
+  config: any
 }) {
-  const { body: { data: greetings } } = await StrabotManager.get('greeting', {
+  const { body: { data: greetings } } = await StrabotManager.get<any>('greeting', {
     searchParams: {
       populate: 'Messages,Quizzes.Answers,Surveys.Options'
     }
@@ -33,10 +35,10 @@ export async function greetings ({
         for (const quiz of quizzes) {
           const { Question, Answers } = quiz.attributes
 
-          const correctAnswerIndex = Answers.findIndex(({ Correct }) => Correct)
+          const correctAnswerIndex = Answers.findIndex(({ Correct }: any) => Correct)
           await context.replyWithQuiz(
             Question,
-            Answers.map(({ Value }) => Value),
+            Answers.map(({ Value }: any) => Value),
             {
               correct_option_id: correctAnswerIndex
             }
@@ -48,7 +50,7 @@ export async function greetings ({
 
           await context.replyWithPoll(
             Question,
-            Options.map(({ Value }) => Value)
+            Options.map(({ Value }: any) => Value)
           )
         }
       }
@@ -56,7 +58,7 @@ export async function greetings ({
       await StrabotManager.post('chats', {
         json: {
           data: {
-            Name: context.chat.first_name,
+            Name: context.message.from.first_name,
             Platform: 'Telegram',
             Type: 'Private',
             Chat_ID: String(context.chat.id)
@@ -78,10 +80,10 @@ export async function greetings ({
         for (const quiz of Quizzes) {
           const { Question, Answers } = quiz.attributes
 
-          const correctAnswerIndex = Answers.findIndex(({ Correct }) => Correct)
+          const correctAnswerIndex = Answers.findIndex(({ Correct }: any) => Correct)
           await context.replyWithQuiz(
             Question,
-            Answers.map(({ Value }) => Value),
+            Answers.map(({ Value }: any) => Value),
             {
               correct_option_id: correctAnswerIndex
             }
@@ -93,16 +95,16 @@ export async function greetings ({
 
           await context.replyWithPoll(
             Question,
-            Options.map(({ Value }) => Value)
+            Options.map(({ Value }: any) => Value)
           )
         }
       }
 
-      if (context.chat.username === username) {
+      if (context.message.from.username === username) {
         await StrabotManager.post('chats', {
           json: {
             data: {
-              Name: context.chat.first_name,
+              Name: context.message.from.first_name,
               Platform: 'Telegram',
               Type: 'Group',
               Chat_ID: String(context.chat.id)

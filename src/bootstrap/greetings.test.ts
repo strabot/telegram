@@ -1,41 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, it, expect, beforeEach, jest } from '@jest/globals'
-import { faker } from '@faker-js/faker'
 
 import { greetings } from './greetings.js'
+import { Got } from 'got'
+import { Telegraf } from 'telegraf'
 
 describe('Greetings bootstrap', () => {
-  /**
-   * @type {import('got').Got}
-   */
-  let StrabotManager
+  let StrabotManager: Got
+  let bot: Telegraf
+  let config: any
 
-  /**
-   * @type {import('telegraf').Telegraf}
-   */
-  let bot
-
-  /**
-   * @type {import('@strabot/types').TelegramConfig}
-   */
-  let config
-
-  beforeEach(() => {
+  beforeEach(async () => {
     StrabotManager = {
       get: jest
         .fn()
-        .mockResolvedValueOnce({
-          body: {
-            data: {
-              id: faker.datatype.number(),
-              attributes: {}
-            }
-          }
-        })
-    }
+        .mockResolvedValueOnce({ body: { data: [] } } as never)
+    } as any
 
     bot = {
       start: jest.fn()
-    }
+    } as any
 
     config = {
       attributes: {}

@@ -1,18 +1,19 @@
-/**
- * Schedules bootstrap
- * @param {Object} params
- * @param {import('../services/Scheduler').Scheduler} params.Scheduler
- * @param {import('got').Got} params.StrabotManager
- * @param {import('telegraf').Telegraf} params.bot
- * @param {import('dayjs')} params.dayjs
- */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { Telegraf } from 'telegraf'
+import type { Got } from 'got'
+
+import dayjs from 'dayjs'
+
 export async function schedules ({
   Scheduler,
   StrabotManager,
-  bot,
-  dayjs
+  bot
+}: {
+  Scheduler: { schedule: any },
+  StrabotManager: Got
+  bot: Telegraf
 }) {
-  const { body: { data: schedules } } = await StrabotManager.get('schedules', {
+  const { body: { data: schedules } } = await StrabotManager.get<any>('schedules', {
     searchParams: {
       populate: 'Messages,Quizzes.Answers,Surveys.Options',
       'filters[Telegram][$eq]': true,
@@ -34,7 +35,7 @@ export async function schedules ({
     Scheduler.schedule({
       when: Recurrent ? Cron : new Date(date),
       handler: async function () {
-        const { body: { data: chats } } = await StrabotManager.get('chats')
+        const { body: { data: chats } } = await StrabotManager.get<any>('chats')
 
         for (const chat of chats) {
           const { Chat_ID: chatId } = chat.attributes
@@ -48,11 +49,11 @@ export async function schedules ({
           for (const quiz of quizzes) {
             const { Question, Answers } = quiz.attributes
 
-            const correctAnswerIndex = Answers.findIndex(({ Correct }) => Correct)
+            const correctAnswerIndex = Answers.findIndex(({ Correct }: any) => Correct)
             await bot.telegram.sendQuiz(
               chatId,
               Question,
-              Answers.map(({ Value }) => Value),
+              Answers.map(({ Value }: any) => Value),
               {
                 correct_option_id: correctAnswerIndex
               }
@@ -65,7 +66,7 @@ export async function schedules ({
             await bot.telegram.sendPoll(
               chatId,
               Question,
-              Options.map(({ Value }) => Value)
+              Options.map(({ Value }: any) => Value)
             )
           }
         }
